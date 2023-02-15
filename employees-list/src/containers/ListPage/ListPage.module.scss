@@ -1,0 +1,12 @@
+@import "../../assets/styles/mixins.scss";
+@import "../../assets/styles/palette.scss";
+
+.IntroSec {
+	display: flex;
+	justify-content: space-between;
+	margin: 50px 0;
+
+	@include mediaQuery("max", 840px) {
+		flex-direction: column;
+	}
+}

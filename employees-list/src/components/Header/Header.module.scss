@@ -1,0 +1,40 @@
+@import "../../assets/styles/mixins.scss";
+@import "../../assets/styles/palette.scss";
+
+.Header {
+	background-color: $lightGrey;
+	padding: 6rem 0;
+
+	&__Inner {
+		padding: 0 6rem;
+		max-width: 900px;
+
+		@include mediaQuery("max", 700px) {
+			max-width: 100%;
+			padding: 0 3rem;
+		}
+		@include mediaQuery("max", 500px) {
+			padding: 0 1rem;
+		}
+	}
+
+	&__BackBtn {
+		display: flex;
+		border: none;
+		background-color: transparent;
+
+		> a {
+			display: flex;
+		}
+
+		> svg {
+			color: $darkGrey;
+		}
+
+		&__Text {
+			display: block;
+			text-decoration: underline;
+			color: $darkGrey;
+		}
+	}
+}

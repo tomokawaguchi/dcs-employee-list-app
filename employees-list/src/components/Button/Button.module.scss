@@ -1,0 +1,32 @@
+@import "../../assets/styles/mixins.scss";
+@import "../../assets/styles/palette.scss";
+
+.Button {
+	@include transitionEffect(0.3s);
+	display: inline-block;
+	width: fit-content;
+	font-weight: 600;
+	color: $textWhite;
+	border: 1px solid $blue;
+	border-radius: 10px;
+	background-color: $blue;
+	padding: 15px 35px;
+	cursor: pointer;
+
+	@include onHoverFocus {
+		color: $blue;
+		background-color: transparent;
+	}
+
+	&__Secondary {
+		color: $textDefault;
+		border-color: $darkGrey;
+		background-color: $lightGrey;
+
+		@include onHoverFocus {
+			color: $textWhite;
+			background-color: $blue;
+			border-color: $blue;
+		}
+	}
+}

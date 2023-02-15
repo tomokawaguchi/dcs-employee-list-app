@@ -1,0 +1,32 @@
+// Mixin
+@mixin mediaQuery($type, $size) {
+	@if $type == "max" {
+		@media only screen and (max-width: $size) {
+			@content;
+		}
+	} @else {
+		@media only screen and (min-width: $size) {
+			@content;
+		}
+	}
+}
+
+// Reset default list styling
+@mixin resetListStylings {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+// On Hover & Focus
+@mixin onHoverFocus {
+	&:hover,
+	&:focus {
+		@content;
+	}
+}
+
+// Transition effect
+@mixin transitionEffect($time) {
+	transition: all $time ease-in-out;
+}
