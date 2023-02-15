@@ -1,6 +1,6 @@
 # Employee List App Project
 
-The project was assigned for me to develop a full stack app where it showcases a list of employees and a user can create a new employee, view a list of all employees, modify existing employee records and finally delete employee records via an app.
+The project was assigned to me to develop a full stack app where it showcases a list of employees and a user can create a new employee, view a list of all employees, modify existing employee records and finally delete employee records via an app.
 
 This git hub repository mainly consists of two: frontend project folder named "employee-list" written in ReactJS and backend project folder called "employee-list-backend" written in Java.
 
@@ -26,11 +26,11 @@ We need a web application to create, list, modify and delete employees. The appl
 
 General:
 
-I started building backend in Spring boot first. I decided to develop in Java as it's similar to c# as well as I have developed my fundamental of backed development in Java during \_nology course. Upon completion of backend, I have begun to built frontend in ReactJs and Typescript. This was my very first typescript project so it started a bit slow but I have managed to learn and pick the basics as I progressed. And finally, I have written unit testing with vitest at the end - I had issues with `jest` being undefined so I wnt ahead with `vitest`.
+I started building backend in Spring boot first. I decided to develop in Java as it's similar to c# as well as I have developed my fundamental of backed development in Java during \_nology course. Upon completion of backend, I have begun to built frontend in ReactJs and Typescript. This was my very first typescript project so it started a bit slow but I have managed to learn and pick the basics as I progressed. And finally, I have written unit testing with `vitest` at the end - I had issues with `jest` being undefined so I went ahead with `vitest`.
 
 Specifics for Backend:
 
-1. I have utilised Model Mapper Class to convert DTO to Entity or vice versa. This is because after setting up the basic CRUD methods, I realised that there are so many fields to instantiate the Entity and DTO with and it is efficient to take care of them indivisually making sure what values are converted ..etc. So I have done some research and I learnt that there is an easier way to help my situation, which is using Model Mapper Class. As a result I have created helper functions to convert classes between DTO and Entity so that I can reuse them at mutiple places.
+1. I have utilised `Model Mapper Class` to convert DTO to Entity or vice versa. This is because after setting up the basic CRUD methods, I realised that there are so many fields to instantiate the Entity and DTO with and it is efficient to take care of them indivisually making sure what values are converted ..etc. Also I learnt that returning DTO to Controller is better practice so I have done some research and found an easier way to help my situation, which is using Model Mapper Class. As a result I have created helper functions to convert classes between DTO and Entity so that I can reuse them at mutiple places.
 
 2. Logging was built in as part of the project requirement but it became very handy during the time I was working on the project.
 
