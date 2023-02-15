@@ -37,7 +37,9 @@ const EmployeeForm = () => {
 
 	useEffect(() => {
 		if (id) {
+			//console.log({ id }, `/employees/${id}`, "IMPORTANT");  --> Console.log for the testing
 			const fetchEmployee = async () => {
+				//console.log("IMPORTANT USER: ", axios.get); --> Console.log for the testing
 				const filteredEmployee = await axios.get(`/employees/${id}`).then((res) => res.data);
 				setCurrentEmployee(filteredEmployee);
 				setAllDates({
@@ -130,7 +132,15 @@ const EmployeeForm = () => {
 				<label htmlFor="firstName" placeholder="John">
 					First name
 				</label>
-				<input type="text" name="firstName" onChange={handleInputChange} value={currentEmployee.firstName} pattern="[A-Za-z]{1,30}" required />
+				<input
+					id="firstName"
+					type="text"
+					name="firstName"
+					onChange={handleInputChange}
+					value={currentEmployee.firstName}
+					pattern="[A-Za-z]{1,30}"
+					required
+				/>
 			</div>
 			<div className={styles.Form__FieldWrapper}>
 				<label htmlFor="middleName">Middle name</label>
