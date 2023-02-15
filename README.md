@@ -2,8 +2,6 @@
 
 <img src="./project-snapshot.png" width="auto" height="400" />
 
-<img src="./project-snapshot.png" width="auto" height="400" />
-
 The project was assigned to me to develop a full stack app where it showcases a list of employees and a user can create a new employee, view a list of all employees, modify existing employee records and finally delete employee records via an app.
 
 This git hub repository mainly consists of two: frontend project folder named "employee-list" written in ReactJS and backend project folder called "employee-list-backend" written in Java.
