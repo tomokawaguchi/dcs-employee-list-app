@@ -54,6 +54,4 @@ Specifics for Frontend:
 
 1. Completing all the testing for both frontend and backend. Currently working on the testing with JUnit and Mokito for the backend.
 
-2. I would like to refactor my CRUD methods especially returned values from service layer to controller layer. At the moment I believe there are not enough indicator/response specified in the controller.
-
-3. I also would like to refactor React code so that my functions are more testable and become pure. Also I'd like to refactor components restructure more unit testing aspects in mind.
+2. I also would like to refactor React code so that my functions are more testable and become pure. Also I'd like to refactor components restructure more unit testing aspects in mind.
