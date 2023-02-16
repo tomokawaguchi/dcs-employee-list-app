@@ -28,7 +28,7 @@ We need a web application to create, list, modify and delete employees. The appl
 
 General:
 
-I started building backend in Spring boot first. I decided to develop in Java as it's similar to c# as well as I have developed my fundamental of backed development in Java during \_nology course. Upon completion of backend, I have begun to built frontend in ReactJs and Typescript. This was my very first typescript project so it started a bit slow but I have managed to learn and pick the basics as I progressed. And finally, I have written unit testing with `vitest` at the end.
+I started building backend in Spring boot first. I decided to develop in Java as it's similar to c# as well as I have developed my fundamental of backed development in Java during \_nology course. Upon completion of backend, I have begun to built frontend in ReactJs and Typescript. This was my very first typescript project so it started a bit slow but I have managed to learn and pick the basics as I progressed. And finally, I have written unit testing with `vitest` for the frontend and some Junit test for the Controller layer for the backend.
 
 Specifics for Backend:
 
@@ -38,9 +38,9 @@ Specifics for Backend:
 
 Specifics for Frontend:
 
-1. Form validation and dates fields were some of the aspects that I struggled with for the front-end.Since I have set the form fields validations up myself, the year fields for the start and finish date was a bit tricky especially for `type=number`(it's not available to set input value length) At the end, my validation logic to overcome this was to allow the input to be between the +-80years from the current years so that appropriate range of years are at least covered.
+1. In this project, `axios` was utilised to fetch data via api and `react-query` to help me handle data states such as error handling and laoding conditions aside from accessing data easily.
 
-2. Unit testing script for the frontend was written in `vitest`. The testing script was written in TypeScript as well. Since I had issues with not resolving data with axio's get function and was unable to complete all of the unit tests on time.
+2. For the from validations, I have managed to set up basics in basic JavaScript way. Most of the `type=text` fields are controlled by specifying patterns such as `pattern="[A-Za-z]{1,30}"` and `type=number` was controlled by `min` and/or `max`. One of the logic I have set by myself is for start and finish date year where it limits users to type years between +-80 years from the user's current year. This is because an employee is unlikely to be able to work no more than 80 years.
 
 ## Reflection
 
