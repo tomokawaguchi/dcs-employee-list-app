@@ -40,7 +40,7 @@ Specifics for Frontend:
 
 1. In this project, `axios` was utilised to fetch data via api and `react-query` to help me handle data states such as error handling and laoding conditions aside from accessing data easily.
 
-2. For the from validations, I have managed to set up basics in basic JavaScript way. Most of the `type=text` fields are controlled by specifying patterns such as `pattern="[A-Za-z]{1,30}"` and `type=number` was controlled by `min` and/or `max`. One of the logic I have set by myself is for start and finish date year where it limits users to type years between +-80 years from the user's current year. This is because an employee is unlikely to be able to work no more than 80 years.
+2. For the from validations, I have managed to set up basics in basic JavaScript way. Most of the `type=text` fields are controlled by specifying patterns such as `pattern="[A-Za-z]{1,30}"` and `type=number` was controlled by `min` and/or `max`. One of the logic I have set by myself is for start and finish date year where it limits users to type years between +-80 years from the user's current year. This is because an employee is unlikely to be able to work more than 80 years.
 
 ## Reflection
 
