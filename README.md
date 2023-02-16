@@ -52,7 +52,7 @@ Specifics for Frontend:
 
 ## Future Goals
 
-1. Completing all the unit testing for both frontend and backend. I need to make my fundamentals more solid for the testing and write more cases to be better at it.
+1. Completing all the testing for both frontend and backend. Currently working on the testing with Mokito for the backend.
 
 2. I would like to refactor my CRUD methods especially returned values from service layer to controller layer. At the moment I believe there are not enough indicator/response specified in the controller.
 

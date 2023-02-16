@@ -85,7 +85,7 @@ public class EmployeeService {
 	}
 
 	// Helper function to convert entity to DTO
-	private EmployeeDTO convertToDto(Employee employee) {
+	public EmployeeDTO convertToDto(Employee employee) {
 		if (employee == null)
 			return null;
 
