@@ -1,9 +1,6 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { Link, useLocation, useParams } from "react-router-dom";
-import { AllEmployeeDataContext } from "../../context/AllEmployeeDataContext";
-import { Employee } from "../../types";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import Button from "../Button/Button";
 import styles from "./EmployeeForm.module.scss";
 
@@ -16,10 +13,10 @@ const EmployeeForm = () => {
 		email: "",
 		mobile: "",
 		residentialAddress: "",
-		contractType: "",
+		contractType: "permanent",
 		startDate: "",
 		finishDate: "",
-		workTimeType: "",
+		workTimeType: "full-time",
 		hoursPerWeek: "",
 		onGoing: "",
 	});
@@ -37,9 +34,7 @@ const EmployeeForm = () => {
 
 	useEffect(() => {
 		if (id) {
-			//console.log({ id }, `/employees/${id}`, "IMPORTANT");  --> Console.log for the testing
 			const fetchEmployee = async () => {
-				//console.log("IMPORTANT USER: ", axios.get); --> Console.log for the testing
 				const filteredEmployee = await axios.get(`/employees/${id}`).then((res) => res.data);
 				setCurrentEmployee(filteredEmployee);
 				setAllDates({
@@ -96,6 +91,7 @@ const EmployeeForm = () => {
 			onGoing: isOnGoing,
 			middleName: currentEmployee.middleName?.length == 0 ? null : currentEmployee.middleName,
 		};
+
 		return finalObj;
 	};
 
@@ -105,7 +101,7 @@ const EmployeeForm = () => {
 
 		const finalObj = formatObj();
 
-		axios.post("/employees", finalObj).then((response) => {
+		axios.post("/employees", finalObj).then(() => {
 			setCurrentEmployee({
 				firstName: "",
 				middleName: "",
@@ -145,6 +141,7 @@ const EmployeeForm = () => {
 			<div className={styles.Form__FieldWrapper}>
 				<label htmlFor="middleName">Middle name</label>
 				<input
+					id="middleName"
 					type="text"
 					name="middleName"
 					onChange={handleInputChange}
@@ -156,7 +153,15 @@ const EmployeeForm = () => {
 				<label htmlFor="lastName" placeholder="Smith">
 					Last name
 				</label>
-				<input type="text" name="lastName" onChange={handleInputChange} value={currentEmployee.lastName} pattern="[A-Za-z]{1,30}" required />
+				<input
+					id="lastName"
+					type="text"
+					name="lastName"
+					onChange={handleInputChange}
+					value={currentEmployee.lastName}
+					pattern="[A-Za-z]{1,30}"
+					required
+				/>
 			</div>
 
 			<h2>Contact details</h2>
@@ -164,20 +169,21 @@ const EmployeeForm = () => {
 				<label htmlFor="email" placeholder="sam.riley@gmail.com">
 					Email address
 				</label>
-				<input type="email" name="email" onChange={handleInputChange} value={currentEmployee.email} required />
+				<input id="email" type="email" name="email" onChange={handleInputChange} value={currentEmployee.email} required />
 			</div>
 
 			<div className={styles.Form__FieldWrapper}>
 				<label htmlFor="mobile" placeholder="0412345678">
 					Mobile number
 				</label>
-				<input type="tel" name="mobile" pattern="[0-9]{10}" onChange={handleInputChange} value={currentEmployee.mobile} required />
+				<input id="mobile" type="tel" name="mobile" pattern="[0-9]{10}" onChange={handleInputChange} value={currentEmployee.mobile} required />
 			</div>
 			<div className={styles.Form__FieldWrapper}>
 				<label htmlFor="residentialAddress" placeholder="Smith">
 					Residential address
 				</label>
 				<input
+					id="residentialAddress"
 					type="text"
 					name="residentialAddress"
 					onChange={handleInputChange}

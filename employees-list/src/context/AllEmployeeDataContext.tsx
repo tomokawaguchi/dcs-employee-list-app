@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import fetchEmployeeData from "../api/fetchEmployeeData";
 
 interface AllEmployeeDataProviderProps {
 	children: React.ReactNode;

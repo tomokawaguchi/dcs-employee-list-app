@@ -11,9 +11,9 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class EmployeeDTO {
-	
+
 	private Long id;
-	
+
 	@NotBlank
 	private String firstName;
 
@@ -26,7 +26,7 @@ public class EmployeeDTO {
 	private String email;
 
 	@NotEmpty
-	@Size(min=10, max=10)
+	@Size(min = 10, max = 10)
 	private String mobile;
 
 	@NotBlank
@@ -35,12 +35,12 @@ public class EmployeeDTO {
 	@NotBlank
 	private String contractType;
 
-	@JsonFormat(pattern="dd-MM-yyyy")
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate startDate;
 
-	@JsonFormat(pattern="dd-MM-yyyy")
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate finishDate;
-	
+
 	@NotNull
 	private boolean isOnGoing;
 

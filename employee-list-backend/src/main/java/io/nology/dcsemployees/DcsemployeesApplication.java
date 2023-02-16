@@ -11,10 +11,10 @@ public class DcsemployeesApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DcsemployeesApplication.class, args);
 	}
-	
+
 	@Bean
-    public ModelMapper modelMapper() {
-        return new ModelMapper();
-    }
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
+	}
 
 }

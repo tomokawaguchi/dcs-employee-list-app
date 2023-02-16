@@ -2,14 +2,15 @@ import { NavLink, useLocation } from "react-router-dom";
 import { RiArrowLeftSLine } from "react-icons/ri";
 
 import styles from "./Header.module.scss";
+import { HeaderProps } from "../../types";
 
-const Header = () => {
+const Header = ({ headerText }: HeaderProps) => {
 	const currentPagePath = useLocation().pathname;
 
 	return (
 		<header className={styles.Header}>
 			<div className={styles.Header__Inner}>
-				{currentPagePath === "/details" ? (
+				{currentPagePath === "/details" && (
 					<>
 						<button className={styles.Header__BackBtn}>
 							<NavLink to="/">
@@ -17,11 +18,9 @@ const Header = () => {
 								<span className={styles.Header__BackBtn__Text}>Back</span>
 							</NavLink>
 						</button>
-						<h1>Employee details</h1>
 					</>
-				) : (
-					<h1>Employees' list</h1>
 				)}
+				<h1>{headerText}</h1>
 			</div>
 		</header>
 	);

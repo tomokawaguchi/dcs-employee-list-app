@@ -1,5 +1,7 @@
 package io.nology.dcsemployees.employee;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -35,15 +37,17 @@ public class EmployeeService {
 
 	public EmployeeDTO createEmployee(EmployeeDTO employeeDTO) {
 		// Make all the name related fields to be upper cased
-		String upperCasedFirstName = employeeDTO.getFirstName().substring(0, 1).toUpperCase()
-				+ employeeDTO.getFirstName().substring(1);
+		String upperCasedFirstName = capitaliseStr(employeeDTO.getFirstName());
 		String upperCasedMiddleName = null;
 		if (employeeDTO.getMiddleName() != null) {
-			upperCasedMiddleName = employeeDTO.getMiddleName().substring(0, 1).toUpperCase()
-					+ employeeDTO.getMiddleName().substring(1);
+			upperCasedMiddleName = capitaliseStr(employeeDTO.getMiddleName());
 		}
-		String upperCasedLastName = employeeDTO.getLastName().substring(0, 1).toUpperCase()
-				+ employeeDTO.getLastName().substring(1);
+		String upperCasedLastName = capitaliseStr(employeeDTO.getLastName());
+
+		// Return null if starting dat is later than finishing date
+		if (employeeDTO.getFinishDate() != null && convertLocalDateToInt(employeeDTO.getStartDate()) >= convertLocalDateToInt(employeeDTO.getFinishDate())) {
+			return null;
+		}
 
 		// Converting DTO to Employee entity
 		Employee newEmployee = convertToEntity(employeeDTO, upperCasedFirstName, upperCasedMiddleName,
@@ -56,22 +60,28 @@ public class EmployeeService {
 		return convertToDto(savedEmployee);
 	}
 
-	public boolean updateEmployee(Long id, EmployeeDTO employeeDTO) {
+	public EmployeeDTO updateEmployee(Long id, EmployeeDTO employeeDTO) {
 		Optional<Employee> employee = this.repositry.findById(id);
 
+		// Create a new employee if an employee doesn't exist
 		if (employee.isEmpty())
-			return false;
+			this.createEmployee(employeeDTO);
 
 		Employee existingEmployee = employee.get();
 
 		modelMapper.map(employeeDTO, existingEmployee);
 		existingEmployee = this.repositry.save(existingEmployee);
 
-		return true;
+		return convertToDto(existingEmployee);
 	}
 
-	public void deleteEmployee(Long id) {
+	public boolean deleteEmployee(Long id) {
+		Optional<Employee> employee = this.repositry.findById(id);
+		if (employee.isEmpty())
+			return false;
+
 		this.repositry.deleteById(id);
+		return true;
 	}
 
 	// Helper function to convert entity to DTO
@@ -93,5 +103,18 @@ public class EmployeeService {
 		employee.setLastName(upperCasedLastName);
 
 		return employee;
+	}
+
+	// Helper function to Capitalise a passed string
+	private String capitaliseStr(String inputStr) {
+		return inputStr.substring(0, 1).toUpperCase() + inputStr.substring(1);
+	}
+
+	// Helper function to convert localdate to int value
+	public int convertLocalDateToInt(LocalDate date) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+		String formattedString = date.format(formatter);
+		System.out.println(Integer.parseInt(formattedString));
+		return Integer.parseInt(formattedString);
 	}
 }

@@ -34,7 +34,7 @@ Specifics for Backend:
 
 1. I have utilised `Model Mapper Class` to convert DTO to Entity or vice versa. This is because after setting up the basic CRUD methods, I realised that there are so many fields to instantiate the Entity and DTO with and it is efficient to take care of them indivisually making sure what values are converted ..etc. Also I learnt that returning DTO to Controller is better practice so I have done some research and found an easier way to help my situation, which is using Model Mapper Class. As a result I have created helper functions to convert classes between DTO and Entity so that I can reuse them at mutiple places.
 
-2. Logging was built in as part of the project requirement but it became very handy during the time I was working on the project.
+2. To validate some of the important DTO, I have written some business logic in Service layer such as ensuring the names are capitalised and starting date is before the finish date. To follow the OOP abstraction concept, these helper functions are taken out from the Server layer methods.
 
 Specifics for Frontend:
 
@@ -46,7 +46,9 @@ Specifics for Frontend:
 
 1. This project taught me a lot especially the aspect of how to pick new concepts and libraries as you go especially under the condition that there is a limited time available for you to complete the project. Probably I'd imagine this could be one of the closest environment of actual work place. However it also taught me how to push myself by overcoming concerns and worries and keep going, which increased my focus level up to be more efficient and think logically what to do next during the project.
 
-2. This project made me realised some of weaknesses of mine - error handling especially in CRUD methods and unit testing in general. Since I have more experinced in frontend than backend works, this could be as matter of practing more. However it definitely guided me to see which area to focus on to up-skill so that I will be a better full-stack engineer.
+2. In my project, dates format (`LocalDate`) are handled as "dd-MM-yyyy". When I started a project in backend, I was focused on the frontend results to follow the Australian format. After combining the frontend and backend, it made me realised that date format should have followed `yyyy-MM-dd` format so that formatting and converting the dates field into other types or comparing could have been easier and less extra logic needed.
+
+3. In the frontend, I have utilised `Context` to fetch the all employee data via API. Initially I had a logic to filter one employee from the all employee data locally for the 'Edit' button. However I have refactored and update it to use `findById` api fetch call so that you can always ensure to fetch the lated data of the specific employee. For this app, `Context` was not in need and `useEffect` on the specific component, however in general as the app gets bigger it's usually a better good to have the data fetched and stored in the `Context` to avoid prop drilling so I have leave it as is now.
 
 ## Future Goals
 

@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import fetchEmployeeData from "../../api/fetchEmployeeData";
+import { useContext, useEffect } from "react";
+import { fetchEmployeeData } from "../../api/fetchEmployeeData";
 import EmployeeItem from "../../components/EmployeeItem/EmployeeItem";
 import { AllEmployeeDataContext } from "../../context/AllEmployeeDataContext";
 import styles from "./EmployeeList.module.scss";

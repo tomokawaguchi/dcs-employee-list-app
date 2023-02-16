@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { ButtonProps } from "../../types";
 import styles from "./Button.module.scss";
 

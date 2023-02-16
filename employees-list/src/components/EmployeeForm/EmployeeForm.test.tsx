@@ -1,10 +1,7 @@
-import { render, fireEvent, screen, waitFor, act } from "@testing-library/react";
-import { describe, it, expect, vi, Mocked } from "vitest";
+import { render, fireEvent, screen } from "@testing-library/react";
+import { describe, it, expect } from "vitest";
 import { BrowserRouter } from "react-router-dom";
 import EmployeeForm from "./EmployeeForm";
-import axios from "axios";
-
-vi.mock("axios");
 
 describe("EmployeeForm component", () => {
 	it("cancels the screen and go back to home", async () => {
@@ -14,43 +11,39 @@ describe("EmployeeForm component", () => {
 		expect(editCancel.closest("a")).toHaveAttribute("href", `/`);
 	});
 
-	// describe("for existing employee", () => {
-	// 	it("able to fetch data by employee id", async () => {
-	// 		render(<EmployeeForm />, { wrapper: BrowserRouter });
+	it("renders the first name input field", () => {
+		render(<EmployeeForm />, { wrapper: BrowserRouter });
+		const firstNameInput = screen.getByLabelText("First name");
+		expect(firstNameInput).toBeInTheDocument();
+	});
 
-	// 		vi.mock("react-router-dom", async () => {q
-	// 			const actual = await vi.importActual("react-router-dom");
-	// 			return {
-	// 				...(actual as object),
-	// 				useParams: vi.fn(() => ({
-	// 					id: "123",
-	// 				})),
-	// 			};
-	// 		});
+	it("renders the middle name input field", () => {
+		render(<EmployeeForm />, { wrapper: BrowserRouter });
+		const middleNameInput = screen.getByLabelText("Middle name");
+		expect(middleNameInput).toBeInTheDocument();
+	});
 
-	// 		vi.spyOn(axios, "get").mockResolvedValueOnce({
-	// 			data: {
-	// 				id: "123",
-	// 				firstName: "Sally",
-	// 				middleName: "Chen",
-	// 				lastName: "Jones",
-	// 				email: "sally@email.com",
-	// 				mobile: "1234567890",
-	// 				residentialAddress: "123 Happy Rd, VIC",
-	// 				contractType: "permanent",
-	// 				startDate: "12-09-2011",
-	// 				finishDate: "12-12-2025",
-	// 				workTimeType: "full-time",
-	// 				hoursPerWeek: "38",
-	// 				onGoing: false,
-	// 			},
-	// 		});
+	it("renders the last name input field", () => {
+		render(<EmployeeForm />, { wrapper: BrowserRouter });
+		const lastNameInput = screen.getByLabelText("Last name");
+		expect(lastNameInput).toBeInTheDocument();
+	});
 
-	// 		const firstName = screen.getByLabelText("First name");
+	it("renders the Email input field", () => {
+		render(<EmployeeForm />, { wrapper: BrowserRouter });
+		const emailInput = screen.getByLabelText("Email address");
+		expect(emailInput).toBeInTheDocument();
+	});
 
-	// 		await waitFor(() => {
-	// 			expect(firstName).toHaveAttribute("value", "Sally");
-	// 		});
-	// 	});
-	// });
+	it("renders the Mobile number input field", () => {
+		render(<EmployeeForm />, { wrapper: BrowserRouter });
+		const mobileInput = screen.getByLabelText("Mobile number");
+		expect(mobileInput).toBeInTheDocument();
+	});
+
+	it("renders the Residential address input field", () => {
+		render(<EmployeeForm />, { wrapper: BrowserRouter });
+		const addressInput = screen.getByLabelText("Residential address");
+		expect(addressInput).toBeInTheDocument();
+	});
 });

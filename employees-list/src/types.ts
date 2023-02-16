@@ -20,3 +20,7 @@ export interface ButtonProps {
 	buttonStyle: String;
 	onClick?: () => void;
 }
+
+export interface HeaderProps {
+	headerText: string;
+}

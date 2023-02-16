@@ -10,6 +10,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,11 +23,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RestController
 @RequestMapping("/employees")
 @CrossOrigin(origins = "http://127.0.0.1:5173/")
+@Validated
 public class EmployeeController {
-	
+
 	// Initializing logger to log details when methods are used:
-    Logger logger = LoggerFactory.getLogger(EmployeeController.class);	
-	
+	Logger logger = LoggerFactory.getLogger(EmployeeController.class);
+
 	@Autowired
 	private EmployeeService service;
 
@@ -44,8 +46,8 @@ public class EmployeeController {
 		if (employeeDTO == null) {
 			logger.error("Employee not found with id: " + id);
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-		}	
-		
+		}
+
 		logger.info("Successfully retrieved an employee with id: " + id);
 		return new ResponseEntity<>(employeeDTO, HttpStatus.OK);
 	}
@@ -53,27 +55,33 @@ public class EmployeeController {
 	@PostMapping
 	public ResponseEntity<EmployeeDTO> createEmployee(@RequestBody EmployeeDTO employeeDTO) {
 		EmployeeDTO savedEmployeeDTO = this.service.createEmployee(employeeDTO);
+
+		if (savedEmployeeDTO == null) {
+			logger.error("Starting date is later than finish date");
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+
 		logger.info("Successfully created a new employee");
-		return new ResponseEntity<>(savedEmployeeDTO, HttpStatus.CREATED);	
+		return new ResponseEntity<>(savedEmployeeDTO, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody EmployeeDTO employeeDTO) {
-		boolean result = this.service.updateEmployee(id, employeeDTO);
+	public ResponseEntity<EmployeeDTO> updateEmployee(@PathVariable Long id, @RequestBody EmployeeDTO employeeDTO) {
+		EmployeeDTO updatedOrNewDTO = this.service.updateEmployee(id, employeeDTO);
 
-		if (result) {
-			logger.error("Employee not found with id: " + id);
-			return new ResponseEntity<>(null, HttpStatus.OK);
-		}
-		
 		logger.info("Successfully updated an employee with id: " + id);
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(updatedOrNewDTO, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteEmployee(@PathVariable Long id) {
-		this.service.deleteEmployee(id);
-		
+		boolean result = this.service.deleteEmployee(id);
+
+		if (!result) {
+			logger.error("Employee not found with id: " + id);
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+
 		logger.info("Successfully deleted an employee with id: " + id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}

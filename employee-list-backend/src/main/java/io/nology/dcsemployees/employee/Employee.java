@@ -78,10 +78,9 @@ public class Employee {
 
 	// Custom constructor without middle name and finish date
 	public Employee(String firstName, String lastName, String email, String mobile, String residentialAddress,
-			String contractType, LocalDate startDate, boolean isOnGoing, String workTimeType,
-			float hoursPerWeek) {
-		this(firstName, null, lastName, email, mobile, residentialAddress, contractType, startDate, null,
-				isOnGoing, workTimeType, hoursPerWeek);
+			String contractType, LocalDate startDate, boolean isOnGoing, String workTimeType, float hoursPerWeek) {
+		this(firstName, null, lastName, email, mobile, residentialAddress, contractType, startDate, null, isOnGoing,
+				workTimeType, hoursPerWeek);
 	}
 
 	public Long getId() {
@@ -187,5 +186,5 @@ public class Employee {
 	public void setOnGoing(boolean isOnGoing) {
 		this.isOnGoing = isOnGoing;
 	}
-	
+
 }

@@ -1,12 +1,16 @@
 import EmployeeForm from "../../components/EmployeeForm/EmployeeForm";
+import Header from "../../components/Header/Header";
 
 const DetailsPage = () => {
 	return (
-		<main>
-			<section>
-				<EmployeeForm />
-			</section>
-		</main>
+		<>
+			<Header headerText="Employee details" />
+			<main>
+				<section>
+					<EmployeeForm />
+				</section>
+			</main>
+		</>
 	);
 };
 
