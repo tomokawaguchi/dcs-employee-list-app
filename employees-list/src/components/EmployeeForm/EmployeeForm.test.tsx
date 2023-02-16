@@ -46,4 +46,35 @@ describe("EmployeeForm component", () => {
 		const addressInput = screen.getByLabelText("Residential address");
 		expect(addressInput).toBeInTheDocument();
 	});
+
+	it("selects permanent radio button by default", () => {
+		render(<EmployeeForm />, { wrapper: BrowserRouter });
+		const addressInput = screen.getByLabelText("Residential address");
+		expect(addressInput).toBeInTheDocument();
+	});
+
+	it("Verify that the first radio button is selected and user can select another radio button", () => {
+		const { getByRole } = render(<EmployeeForm />, { wrapper: BrowserRouter });
+		const permanent = getByRole("radio", { name: "Permanent" });
+		const contract = getByRole("radio", { name: "Contract" });
+		expect(permanent).toBeChecked();
+		fireEvent.click(contract);
+		expect(permanent).not.toBeChecked();
+		expect(contract).toBeChecked();
+	});
+
+	it("should disable Finished date fields when On going checkbox is selected, vice versa", () => {
+		render(<EmployeeForm />, { wrapper: BrowserRouter });
+		const finishDateInput = screen.getByTestId("finishDateDay");
+		const onGoingCheckbox = screen.getByLabelText("On going");
+
+		expect(finishDateInput).not.toHaveAttribute("disabled");
+		expect(onGoingCheckbox).not.toBeChecked();
+		fireEvent.click(onGoingCheckbox);
+		expect(finishDateInput).toHaveAttribute("disabled");
+		expect(onGoingCheckbox).toBeChecked();
+		fireEvent.click(onGoingCheckbox);
+		expect(finishDateInput).not.toHaveAttribute("disabled");
+		expect(onGoingCheckbox).not.toBeChecked();
+	});
 });

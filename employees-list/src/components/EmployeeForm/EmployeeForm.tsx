@@ -197,23 +197,25 @@ const EmployeeForm = () => {
 			<p>What is contract type?</p>
 			<div className={`${styles.Form__FieldWrapper} ${styles.Form__RadioCheck}`}>
 				<input
+					id="permanent"
 					type="radio"
 					name="contractType"
 					value="permanent"
 					onChange={handleInputChange}
 					checked={currentEmployee.contractType.toLowerCase() == "permanent" ? true : currentEmployee.contractType.length == 0 ? true : false}
 				/>
-				<label>Permanent</label>
+				<label htmlFor="permanent">Permanent</label>
 			</div>
 			<div className={`${styles.Form__FieldWrapper} ${styles.Form__RadioCheck}`}>
 				<input
+					id="contract"
 					type="radio"
 					name="contractType"
 					value="contract"
 					onChange={handleInputChange}
 					checked={currentEmployee.contractType.toLowerCase() === "contract" ? true : false}
 				/>
-				<label>Contract</label>
+				<label htmlFor="contract">Contract</label>
 			</div>
 
 			<p>Start date</p>
@@ -222,7 +224,16 @@ const EmployeeForm = () => {
 					<label htmlFor="startDateDay" placeholder="28">
 						Day
 					</label>
-					<input type="number" name="startDateDay" value={allDates.startDateDay} onChange={handleDatesChange} min={1} max={31} required />
+					<input
+						id="startDateDay"
+						type="number"
+						name="startDateDay"
+						value={allDates.startDateDay}
+						onChange={handleDatesChange}
+						min={1}
+						max={31}
+						required
+					/>
 				</div>
 				<div className={`${styles.Form__FieldWrapper} ${styles.Form__SelectMonth}`}>
 					<label>Month</label>
@@ -247,6 +258,7 @@ const EmployeeForm = () => {
 						Year
 					</label>
 					<input
+						id="startDateYear"
 						type="number"
 						min={new Date().getFullYear() - 80}
 						max={new Date().getFullYear()}
@@ -265,6 +277,7 @@ const EmployeeForm = () => {
 						Day
 					</label>
 					<input
+						id="finishDateDay"
 						type="number"
 						name="finishDateDay"
 						onChange={handleDatesChange}
@@ -272,11 +285,12 @@ const EmployeeForm = () => {
 						disabled={isOnGoing ? true : false}
 						min={1}
 						max={31}
+						data-testid="finishDateDay"
 						required
 					/>
 				</div>
 				<div className={`${styles.Form__FieldWrapper} ${styles.Form__SelectMonth}`}>
-					<label>Month</label>
+					<label id="finishDateMonth">Month</label>
 					<select name="finishDateMonth" onChange={handleDatesChange} value={allDates.finishDateMonth} disabled={isOnGoing ? true : false}>
 						<option value="01">January</option>
 						<option value="02">February</option>
@@ -310,30 +324,37 @@ const EmployeeForm = () => {
 				</div>
 			</div>
 			<div className={`${styles.Form__FieldWrapper} ${styles.Form__RadioCheck}`}>
-				<input type="checkbox" onChange={(e) => (e.target.checked ? setIsOnGoing(true) : setIsOnGoing(false))} checked={isOnGoing ? true : false} />
-				<label>On going</label>
+				<input
+					id="onGoing"
+					type="checkbox"
+					onChange={(e) => (e.target.checked ? setIsOnGoing(true) : setIsOnGoing(false))}
+					checked={isOnGoing ? true : false}
+				/>
+				<label htmlFor="onGoing">On going</label>
 			</div>
 
 			<p>Is this on a full-time or part-time basis?</p>
 			<div className={`${styles.Form__FieldWrapper} ${styles.Form__RadioCheck}`}>
 				<input
+					id="fullTime"
 					type="radio"
 					name="workTimeType"
 					value="full-time"
 					onChange={handleInputChange}
 					checked={currentEmployee.workTimeType.toLowerCase() == "full-time" ? true : currentEmployee.workTimeType.length == 0 ? true : false}
 				/>
-				<label>Full-time</label>
+				<label htmlFor="fullTime">Full-time</label>
 			</div>
 			<div className={`${styles.Form__FieldWrapper} ${styles.Form__RadioCheck}`}>
 				<input
+					id="partTime"
 					type="radio"
 					name="workTimeType"
 					value="part-time"
 					onChange={handleInputChange}
 					checked={currentEmployee.workTimeType.toLowerCase() == "part-time" ? true : false}
 				/>
-				<label>Part-time</label>
+				<label htmlFor="partTime">Part-time</label>
 			</div>
 
 			<div className={`${styles.Form__FieldWrapper} ${styles.Form__HoursPerWeek}`}>

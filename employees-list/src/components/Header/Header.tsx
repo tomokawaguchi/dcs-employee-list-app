@@ -12,7 +12,7 @@ const Header = ({ headerText }: HeaderProps) => {
 			<div className={styles.Header__Inner}>
 				{currentPagePath === "/details" && (
 					<>
-						<button className={styles.Header__BackBtn}>
+						<button id="backBtn" type="button" className={styles.Header__BackBtn}>
 							<NavLink to="/">
 								<RiArrowLeftSLine />
 								<span className={styles.Header__BackBtn__Text}>Back</span>
