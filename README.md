@@ -28,7 +28,7 @@ We need a web application to create, list, modify and delete employees. The appl
 
 General:
 
-I started building backend in Spring boot first. I decided to develop in Java as it's similar to c# as well as I have developed my fundamental of backed development in Java during \_nology course. Upon completion of backend, I have begun to built frontend in ReactJs and Typescript. This was my very first typescript project so it started a bit slow but I have managed to learn and pick the basics as I progressed. And finally, I have written unit testing with `vitest` at the end - I had issues with `jest` being undefined so I went ahead with `vitest`.
+I started building backend in Spring boot first. I decided to develop in Java as it's similar to c# as well as I have developed my fundamental of backed development in Java during \_nology course. Upon completion of backend, I have begun to built frontend in ReactJs and Typescript. This was my very first typescript project so it started a bit slow but I have managed to learn and pick the basics as I progressed. And finally, I have written unit testing with `vitest` at the end.
 
 Specifics for Backend:
 
@@ -40,9 +40,9 @@ Specifics for Frontend:
 
 1. Form validation and dates fields were some of the aspects that I struggled with for the front-end.Since I have set the form fields validations up myself, the year fields for the start and finish date was a bit tricky especially for `type=number`(it's not available to set input value length) At the end, my validation logic to overcome this was to allow the input to be between the +-80years from the current years so that appropriate range of years are at least covered.
 
-2. Unit testing script for the frontend was written in `vitest` as I had issues with `jest`. The testing script was written in TypeScript as well. Since I had issues with not resolving data with axio's get function and was unable to complete all of the unit tests on time.
+2. Unit testing script for the frontend was written in `vitest`. The testing script was written in TypeScript as well. Since I had issues with not resolving data with axio's get function and was unable to complete all of the unit tests on time.
 
-## Refection
+## Reflection
 
 1. This project taught me a lot especially the aspect of how to pick new concepts and libraries as you go especially under the condition that there is a limited time available for you to complete the project. Probably I'd imagine this could be one of the closest environment of actual work place. However it also taught me how to push myself by overcoming concerns and worries and keep going, which increased my focus level up to be more efficient and think logically what to do next during the project.
 
