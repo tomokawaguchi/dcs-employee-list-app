@@ -58,4 +58,4 @@ Specifics for Frontend:
 
 ## Change logs
 
-- 13-02-2023 : Started revamping portfolio in ReactJS project with different design. See my progress here: https://github.com/tomokawaguchi/my-portfolio/tree/ver-2023
+- 17-02-2023 : Start and finish date format have been updated to `yyyy-MM-dd` and its associated logics in both frontend and backend have been adjusted accordingly.
