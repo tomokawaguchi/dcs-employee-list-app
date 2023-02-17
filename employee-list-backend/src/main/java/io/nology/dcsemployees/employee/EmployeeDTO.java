@@ -35,10 +35,10 @@ public class EmployeeDTO {
 	@NotBlank
 	private String contractType;
 
-	@JsonFormat(pattern = "dd-MM-yyyy")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate startDate;
 
-	@JsonFormat(pattern = "dd-MM-yyyy")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate finishDate;
 
 	@NotNull

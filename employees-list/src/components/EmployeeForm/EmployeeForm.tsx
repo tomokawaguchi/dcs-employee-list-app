@@ -37,13 +37,21 @@ const EmployeeForm = () => {
 			const fetchEmployee = async () => {
 				const filteredEmployee = await axios.get(`/employees/${id}`).then((res) => res.data);
 				setCurrentEmployee(filteredEmployee);
+				const startDate = new Date(filteredEmployee.startDate);
+				const finishDate = new Date(filteredEmployee.finishDate);
+
 				setAllDates({
-					startDateDay: filteredEmployee.startDate.slice(0, 2),
-					startDateMonth: filteredEmployee.startDate.slice(3).slice(0, 2),
-					startDateYear: filteredEmployee.startDate.slice(-4),
-					finishDateDay: filteredEmployee.finishDate == null ? "" : filteredEmployee.finishDate.slice(0, 2),
-					finishDateMonth: filteredEmployee.finishDate == null ? "01" : filteredEmployee.finishDate.slice(3).slice(0, 2),
-					finishDateYear: filteredEmployee.finishDate == null ? "" : filteredEmployee.finishDate.slice(-4),
+					startDateDay: startDate.getDate().toString(),
+					startDateMonth: startDate.getMonth() < 10 ? `0${(startDate.getMonth() + 1).toString()}` : (startDate.getMonth() + 1).toString(),
+					startDateYear: startDate.getFullYear().toString(),
+					finishDateDay: filteredEmployee.finishDate == null ? "" : finishDate.getDate().toString(),
+					finishDateMonth:
+						filteredEmployee.finishDate == null
+							? ""
+							: finishDate.getMonth() < 9
+							? `0${(finishDate.getMonth() + 1).toString()}`
+							: (finishDate.getMonth() + 1).toString(),
+					finishDateYear: filteredEmployee.finishDate == null ? "" : finishDate.getFullYear().toString(),
 				});
 				setIsOnGoing(filteredEmployee.onGoing);
 			};
@@ -80,9 +88,9 @@ const EmployeeForm = () => {
 
 		const finishDateYearFormat = allDates.finishDateYear.length == 4 ? allDates.finishDateYear : "invalid";
 
-		const finalStartDate = `${startDateDayFormat}-${allDates.startDateMonth}-${startDateYearFormat}`;
+		const finalStartDate = `${startDateYearFormat}-${allDates.startDateMonth}-${startDateDayFormat}`;
 
-		const finalFinishDate = `${finishDateDayFormat}-${allDates.finishDateMonth}-${finishDateYearFormat}`;
+		const finalFinishDate = `${finishDateYearFormat}-${allDates.finishDateMonth}-${finishDateDayFormat}`;
 
 		const finalObj = {
 			...currentEmployee,

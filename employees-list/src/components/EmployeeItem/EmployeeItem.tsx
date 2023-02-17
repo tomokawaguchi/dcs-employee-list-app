@@ -4,7 +4,7 @@ import styles from "./EmployeeItem.module.scss";
 import { Employee } from "../../types";
 
 const EmployeeItem = ({ employeeData }: { employeeData: Employee }) => {
-	const yearStarted: number = +employeeData.startDate?.slice(6); // year in string
+	const yearStarted: number = new Date(employeeData.startDate).getFullYear();
 	const currentYear: number = new Date().getFullYear();
 
 	const handleDelete = async () => {

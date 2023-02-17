@@ -24,6 +24,7 @@ public class EmployeeService {
 
 	public List<EmployeeDTO> getAllEmployees() {
 		List<Employee> employeeList = this.repositry.findAll();
+		 
 		// Map through a list to convert employee to employee dto
 		List<EmployeeDTO> employeeDTOList = employeeList.stream().map(this::convertToDto).collect(Collectors.toList());
 		return employeeDTOList;
