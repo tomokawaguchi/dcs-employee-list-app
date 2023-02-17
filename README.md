@@ -55,3 +55,7 @@ Specifics for Frontend:
 1. Completing all the testing for both frontend and backend. Currently working on the testing with JUnit and Mokito for the backend.
 
 2. I also would like to refactor React code so that my functions are more testable and become pure. Also I'd like to refactor components restructure more unit testing aspects in mind.
+
+## Change logs
+
+- 17-02-2023 : Start and finish date format have been updated to `yyyy-MM-dd` and its associated logics in both frontend and backend have been adjusted accordingly.

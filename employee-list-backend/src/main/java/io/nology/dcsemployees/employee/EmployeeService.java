@@ -46,7 +46,8 @@ public class EmployeeService {
 		String upperCasedLastName = capitaliseStr(employeeDTO.getLastName());
 
 		// Return null if starting dat is later than finishing date
-		if (employeeDTO.getFinishDate() != null && convertLocalDateToInt(employeeDTO.getStartDate()) >= convertLocalDateToInt(employeeDTO.getFinishDate())) {
+		if (employeeDTO.getFinishDate() != null
+				&& convertLocalDateToInt(employeeDTO.getStartDate()) >= convertLocalDateToInt(employeeDTO.getFinishDate())) {
 			return null;
 		}
 
