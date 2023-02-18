@@ -48,10 +48,14 @@ Specifics for Frontend:
 
 2. In my project, dates format (`LocalDate`) are handled as "dd-MM-yyyy". When I started a project in backend, I was focused on the frontend results to follow the Australian format. After combining the frontend and backend, it made me realised that date format should have followed `yyyy-MM-dd` format so that formatting and converting the dates field into other types or comparing could have been easier and less extra logic needed.
 
-3. In the frontend, I have utilised `Context` to fetch the all employee data via API. Initially I had a logic to filter one employee from the all employee data locally for the 'Edit' button. However I have refactored and update it to use `findById` api fetch call so that you can always ensure to fetch the lated data of the specific employee. For this app, `Context` was not in need and `useEffect` on the specific component, however in general as the app gets bigger it's usually a better good to have the data fetched and stored in the `Context` to avoid prop drilling so I have leave it as is now.
+3. In the frontend, I have utilised `Context` to store the all employee data via API. Initially I had a logic to filter one employee from the all employee data locally for the 'Edit' button. However I have refactored and update it to use `findById` api fetch call so that you can always ensure to fetch the lated data of the specific employee. For this app, `Context` was not in need and `useEffect` on the specific component, however in general as an app gets bigger it's usually good to have the data fetched and stored in the `Context` to avoid prop drilling so I have leave it as is now.
 
 ## Future Goals
 
 1. Completing all the testing for both frontend and backend. Currently working on the testing with JUnit and Mokito for the backend.
 
 2. I also would like to refactor React code so that my functions are more testable and become pure. Also I'd like to refactor components restructure more unit testing aspects in mind.
+
+## Change logs
+
+- 17-02-2023 : Start and finish date format have been updated to `yyyy-MM-dd` and its associated logics in both frontend and backend have been adjusted accordingly.
