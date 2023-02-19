@@ -59,3 +59,4 @@ Specifics for Frontend:
 ## Change logs
 
 - 17-02-2023 : Start and finish date format have been updated to `yyyy-MM-dd` and its associated logics in both frontend and backend have been adjusted accordingly.
+- 19-02-2023 : Updated the logic relating to the API call methods and error handlings. Adjusted for `AllEmployeeDataContext` to fetch all the employee data via API and for `EmployeeList` to have `allLocalEmployee` state as local data. `EmployeeForm` has now both `PUT` and `POST` axios method with error handling logics depending on the editing or creating a new employee situation. `DELETE` axios method has been moved to `EmployeeList` so that component gets trigger to rerender every delete action.
