@@ -58,4 +58,4 @@ Specifics for Frontend:
 
 ## Change logs
 
-- 17-02-2023 : Start and finish date format have been updated to `yyyy-MM-dd` and its associated logics in both frontend and backend have been adjusted accordingly.
+`Main` branch is utilised for the assignment submission. Any further updates on this project can be seen on the `update-v1` branch.
