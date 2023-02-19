@@ -4,22 +4,24 @@ import { Link, useParams } from "react-router-dom";
 import Button from "../Button/Button";
 import styles from "./EmployeeForm.module.scss";
 
+const defaultEmployee = {
+	firstName: "",
+	middleName: "",
+	lastName: "",
+	email: "",
+	mobile: "",
+	residentialAddress: "",
+	contractType: "permanent",
+	startDate: "",
+	finishDate: "",
+	workTimeType: "full-time",
+	hoursPerWeek: "",
+	onGoing: "",
+};
+
 const EmployeeForm = () => {
 	const { id } = useParams();
-	const [currentEmployee, setCurrentEmployee] = useState({
-		firstName: "",
-		middleName: "",
-		lastName: "",
-		email: "",
-		mobile: "",
-		residentialAddress: "",
-		contractType: "permanent",
-		startDate: "",
-		finishDate: "",
-		workTimeType: "full-time",
-		hoursPerWeek: "",
-		onGoing: "",
-	});
+	const [currentEmployee, setCurrentEmployee] = useState(defaultEmployee);
 
 	const [allDates, setAllDates] = useState({
 		startDateDay: "",
@@ -35,25 +37,34 @@ const EmployeeForm = () => {
 	useEffect(() => {
 		if (id) {
 			const fetchEmployee = async () => {
-				const filteredEmployee = await axios.get(`/employees/${id}`).then((res) => res.data);
-				setCurrentEmployee(filteredEmployee);
-				const startDate = new Date(filteredEmployee.startDate);
-				const finishDate = new Date(filteredEmployee.finishDate);
+				try {
+					const response = await axios.get(`/employees/${id}`);
+					if (response.status == 200) {
+						const filteredEmployee = response?.data;
+						setCurrentEmployee(filteredEmployee);
+						const startDate = new Date(filteredEmployee.startDate);
+						const finishDate = new Date(filteredEmployee.finishDate);
 
-				setAllDates({
-					startDateDay: startDate.getDate().toString(),
-					startDateMonth: startDate.getMonth() < 10 ? `0${(startDate.getMonth() + 1).toString()}` : (startDate.getMonth() + 1).toString(),
-					startDateYear: startDate.getFullYear().toString(),
-					finishDateDay: filteredEmployee.finishDate == null ? "" : finishDate.getDate().toString(),
-					finishDateMonth:
-						filteredEmployee.finishDate == null
-							? ""
-							: finishDate.getMonth() < 9
-							? `0${(finishDate.getMonth() + 1).toString()}`
-							: (finishDate.getMonth() + 1).toString(),
-					finishDateYear: filteredEmployee.finishDate == null ? "" : finishDate.getFullYear().toString(),
-				});
-				setIsOnGoing(filteredEmployee.onGoing);
+						setAllDates({
+							startDateDay: startDate.getDate().toString(),
+							startDateMonth: startDate.getMonth() < 10 ? `0${(startDate.getMonth() + 1).toString()}` : (startDate.getMonth() + 1).toString(),
+							startDateYear: startDate.getFullYear().toString(),
+							finishDateDay: filteredEmployee.finishDate == null ? "" : finishDate.getDate().toString(),
+							finishDateMonth:
+								filteredEmployee.finishDate == null
+									? ""
+									: finishDate.getMonth() < 9
+									? `0${(finishDate.getMonth() + 1).toString()}`
+									: (finishDate.getMonth() + 1).toString(),
+							finishDateYear: filteredEmployee.finishDate == null ? "" : finishDate.getFullYear().toString(),
+						});
+						setIsOnGoing(filteredEmployee.onGoing);
+					} else {
+						throw new Error(`${response.status} error occurred.`);
+					}
+				} catch (error) {
+					console.log({ error });
+				}
 			};
 			fetchEmployee();
 		}
@@ -109,24 +120,37 @@ const EmployeeForm = () => {
 
 		const finalObj = formatObj();
 
-		axios.post("/employees", finalObj).then(() => {
-			setCurrentEmployee({
-				firstName: "",
-				middleName: "",
-				lastName: "",
-				email: "",
-				mobile: "",
-				residentialAddress: "",
-				contractType: "",
-				startDate: "",
-				finishDate: "",
-				workTimeType: "",
-				hoursPerWeek: "",
-				onGoing: "",
-			});
-
-			window.location.href = "/"; // Reload to go back to home
-		});
+		if (id) {
+			axios
+				.put(`/employees/${id}`, finalObj)
+				.then((response) => {
+					if (response?.status == 200) {
+						setCurrentEmployee(defaultEmployee);
+						window.location.href = "/"; // Reload to go back to home
+					} else {
+						throw new Error(`${response.status} error occurred.`);
+					}
+				})
+				.catch((error) => {
+					console.log(error);
+					alert(`Something went wrong with updating an employee: ${error}.`);
+				});
+		} else {
+			axios
+				.post("/employees", finalObj)
+				.then((response) => {
+					if (response?.status == 201) {
+						setCurrentEmployee(defaultEmployee);
+						window.location.href = "/"; // Reload to go back to home
+					} else {
+						throw new Error(`${response.status} error occurred.`);
+					}
+				})
+				.catch((error) => {
+					console.log(error);
+					alert(`Something went wrong with creating a new employee`);
+				});
+		}
 	};
 
 	return (

@@ -3,19 +3,14 @@ import { Link } from "react-router-dom";
 import styles from "./EmployeeItem.module.scss";
 import { Employee } from "../../types";
 
-const EmployeeItem = ({ employeeData }: { employeeData: Employee }) => {
+interface EmployeeItemProps {
+	employeeData: Employee;
+	handleDelete: (id: number) => {};
+}
+
+const EmployeeItem = ({ employeeData, handleDelete }: EmployeeItemProps) => {
 	const yearStarted: number = new Date(employeeData.startDate).getFullYear();
 	const currentYear: number = new Date().getFullYear();
-
-	const handleDelete = async () => {
-		try {
-			await axios.delete(`/employees/${employeeData.id}`);
-			window.location.reload(); // reload the window to see the updates
-		} catch (error) {
-			console.log(error);
-			alert(`Something went wrong with deleting an employee: ${error}`);
-		}
-	};
 
 	return (
 		<li className={styles.EmployeeItem}>
@@ -37,7 +32,7 @@ const EmployeeItem = ({ employeeData }: { employeeData: Employee }) => {
 				<button className={styles.ButtonsList__Edit}>
 					<Link to={`/details/${employeeData.id}`}>Edit</Link>
 				</button>
-				<button className={styles.ButtonsList__Remove} onClick={handleDelete}>
+				<button className={styles.ButtonsList__Remove} onClick={() => handleDelete(employeeData.id)}>
 					Remove
 				</button>
 			</div>
