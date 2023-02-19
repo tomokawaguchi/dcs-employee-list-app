@@ -8,7 +8,6 @@ import { Employee } from "../../types";
 const EmployeeList = () => {
 	const { allLocalEmployees, isLoading, hasError } = useContext(AllEmployeeDataContext);
 	const [allLocalEmployee, setAllLocalEmployee] = useState([]);
-	const [hasMessage, setHasMessage] = useState("");
 
 	useEffect(() => {
 		setAllLocalEmployee(allLocalEmployees);
@@ -30,19 +29,6 @@ const EmployeeList = () => {
 				console.log(error);
 				alert(`Something went wrong with deleting an employee: ${error}`);
 			});
-
-		// try {
-		// 	const response = await axios.delete(`/employees/${id}`);
-		// 	if (response?.status == 204) {
-		// 		alertMessage = `An employee with id of ${id} has been successfully deleted.`;
-		// 		const remainingEmployees = allLocalEmployee?.filter((each: Employee) => each.id != id);
-		// 		setAllLocalEmployee(remainingEmployees);
-		// 	} else {
-		// 		throw new Error(`${response.status} error occurred.`);
-		// 	}
-		// } catch(error) {
-		// 	console.log({error});
-		// }
 	};
 
 	return (
